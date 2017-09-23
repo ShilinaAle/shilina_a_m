@@ -29,6 +29,8 @@ int main()
 	std::cout << "z+= 8.7 = " << z << " right answer is {492.333, 646.41}" << endl;
 	c = a * b;
 	std::cout << "c = a * b = " << c << endl;
+	
+	std::cout << "Hello, world " << endl;
 
 
 
