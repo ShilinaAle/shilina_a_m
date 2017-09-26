@@ -1,4 +1,0 @@
-#ifndef RATIONAL_H_20170921
-#define RATIONAL_H_20170921
-#include 
-#endif // !RATIONAL_H_20170921
