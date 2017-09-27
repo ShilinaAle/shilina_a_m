@@ -8,8 +8,8 @@ int main()
 	testParse("8./9");
 	testParse("8/ 9 ");
 	testParse("8/9.");
-	std::cout << "Nod(30, 18) = " << Nod(30, 18) << endl;
-	std::cout << (Rational(7, 1) != Rational(7)) << endl;
+	std::cout << "Rational(30, 18) = " << Rational(30, 18) << endl;
+	std::cout << "(7,1) != 7" << (Rational(7, 1) != Rational(7)) << endl;
 
 	Rational z(2, 6);
 	std::cout << "z = " << z << endl;

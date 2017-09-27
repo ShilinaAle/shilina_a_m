@@ -22,9 +22,11 @@ struct Rational {
 	int denom{ 1 };
 
 	static const char separator{ '/' };
+
+private:
+	void nod();
 };
-void minus(int& numerator, int& denominator);
-int Nod(int a, int b);
+
 
 Rational operator+(const Rational& lhs, const Rational& rhs);
 Rational operator-(const Rational& lhs, const Rational& rhs);

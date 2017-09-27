@@ -10,7 +10,22 @@ std::istream& operator>> (std::istream& istrm, Rational& rhs)
 {
 	return rhs.readFrom(istrm);
 }
-
+void Rational::nod()
+{
+	int a = num;
+	int b = denom;
+	if (a < 0) { a = -a; }
+	while ((a != 0) && (b != 0))
+	{
+		if (a > b)
+		{
+			a = a%b;
+		}
+		else { b = b%a; }
+	}
+	num = num / (a + b);
+	denom = denom / (a + b);
+}
 bool testParse(const std::string& str)
 {
 	using namespace std;
@@ -35,16 +50,24 @@ Rational::Rational(const int numerator, const int denominator)
 	: num(numerator),
 	denom(denominator)
 {
-	minus(num, denom);
+	if ((denom < 0) && (num < 0))
+	{
+		num = abs(num);
+		denom = abs(denom);
+	}
+	if (denom < 0)
+	{
+		num = -num;
+		denom = abs(denom);
+	}
+	nod();
 }
 
 Rational& Rational::operator+=(const Rational& rhs)
 {
 	num = num*rhs.denom+rhs.num*denom;
 	denom = denom* rhs.denom;
-	int n = Nod(num, denom);
-	num = num / n;
-	denom = denom / n;
+	nod();
 	return *this;
 }
 
@@ -52,9 +75,7 @@ Rational& Rational::operator-=(const Rational& rhs)
 {
 	num = num*rhs.denom - rhs.num*denom;
 	denom = denom * rhs.denom;
-	int n = Nod(num, denom);
-	num = num / n;
-	denom = denom / n;
+	nod();
 	return *this;
 }
 
@@ -62,9 +83,7 @@ Rational& Rational::operator*=(const Rational& rhs)
 {
 	num = num * rhs.num;
 	denom = denom * rhs.denom;
-	int n = Nod(num, denom);
-	num = num / n;
-	denom = denom / n;
+	nod();
 	return *this;
 }
 Rational operator+(const Rational& lhs, const Rational& rhs)
@@ -110,29 +129,4 @@ std::istream& Rational::readFrom(std::istream& istrm)
 	}
 	return istrm;
 }
-void minus(int& numerator, int& denominator)
-{
-	if ((denominator < 0) && (numerator < 0))
-	{
-		numerator = abs(numerator);
-		denominator = abs(denominator);
-	}
-	if (denominator < 0)
-	{
-		numerator = -numerator;
-		denominator = abs(denominator);
-	}
-}
-int Nod(int a, int b)
-{
-	if (a < 0) { a = 0 - a; }
-	while ((a != 0) && (b != 0))
-	{
-		if (a > b)
-		{
-			a = a%b;
-		}
-		else { b = b%a; }
-	}
-	return a + b;
-}
+
