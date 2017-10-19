@@ -4,3 +4,5 @@ project( shilina_a_m )
 
 add_subdirectory( complex )
 add_subdirectory( rational )
+add_subdirectory( vec3d )
+add_subdirectory( vec3dT )

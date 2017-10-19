@@ -41,6 +41,36 @@ bool testParse(const std::string& str)
 	return istrm.good();
 }
 
+std::ostream& Rational::writeTo(std::ostream& ostrm) const
+{
+	if (denom == 1) 
+	{
+		ostrm << num;
+	}
+	else {
+		ostrm << num << separator << denom;
+	}
+	return ostrm;
+}
+
+std::istream& Rational::readFrom(std::istream& istrm)
+{
+	int numerator(0);
+	char sep(0);
+	int denominator(1);
+	istrm >> numerator >> sep >> denominator;
+	if (istrm.good()) {
+		if ((Rational::separator == sep) && (denominator != 0)) {
+			num = numerator;
+			denom = denominator;
+		}
+		else {
+			istrm.setstate(std::ios_base::failbit);
+		}
+	}
+	return istrm;
+}
+
 Rational::Rational(const int numerator)
 	:Rational(numerator, 1)
 {
@@ -61,6 +91,12 @@ Rational::Rational(const int numerator, const int denominator)
 		denom = abs(denom);
 	}
 	nod();
+}
+
+Rational& Rational::operator=(const int& rhs)
+{
+	*this = Rational(rhs);
+	return *this;
 }
 
 Rational& Rational::operator+=(const Rational& rhs)
@@ -86,6 +122,12 @@ Rational& Rational::operator*=(const Rational& rhs)
 	nod();
 	return *this;
 }
+Rational & Rational::operator/=(const Rational & rhs)
+{
+	Rational rhs_(rhs.denom, rhs.num);
+	*this *= rhs_;
+	return *this;
+}
 Rational operator+(const Rational& lhs, const Rational& rhs)
 {
 	Rational sum(lhs);
@@ -107,26 +149,10 @@ Rational operator*(const Rational& lhs, const Rational& rhs)
 	return sum;
 }
 
-std::ostream& Rational::writeTo(std::ostream& ostrm) const
+Rational operator/(const Rational & lhs, const Rational & rhs)
 {
-	ostrm << num << separator << denom;
-	return ostrm;
-}
-std::istream& Rational::readFrom(std::istream& istrm)
-{
-	int numerator(0);
-	char sep(0);
-	int denominator(1);
-	istrm >> numerator >> sep >> denominator;
-	if (istrm.good()) {
-		if ((Rational::separator == sep) && (denominator != 0)) {
-			num = numerator;
-			denom = denominator;
-		}
-		else {
-			istrm.setstate(std::ios_base::failbit);
-		}
-	}
-	return istrm;
+	Rational sum(rhs.denom, rhs.num);
+	sum *= lhs;
+	return sum;
 }
 
