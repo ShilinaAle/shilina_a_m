@@ -1,6 +1,5 @@
 #ifndef VEC3D_H_20171014
 #define VEC3D_H_20171014
-#include <iosfwd>
 #include <iostream>
 #include <sstream>
 
@@ -47,7 +46,9 @@ public:
 			return istrm;
 		}
 	}*/
-	
+
+	bool operator==(const Vec3dT<T>& v);
+
 	Vec3dT<T>& operator=(const Vec3dT<T>& v)
 	{
 		x = v.x;
@@ -98,6 +99,11 @@ public:
 	const char rightBrace{ ')' };
 
 };
+template <typename T>
+bool Vec3dT<T>::operator==(const Vec3dT<T>& v)
+{
+	return compareTo(v);
+}
 
 template <typename T>
 bool Vec3dT<T>::compareTo(const Vec3dT<T>& v)

@@ -1,6 +1,5 @@
 #include "vec3d.h"
 #include <iostream>
-#include <sstream>
 #include <iomanip>
 
 int main()

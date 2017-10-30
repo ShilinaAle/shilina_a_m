@@ -1,0 +1,1 @@
+add_executable ( rect2d rect2d.h rect2d.cpp rect2d_test.cpp)

@@ -1,6 +1,5 @@
 #include "vec3dT.h"
 #include <iostream>
-#include <sstream>
 #include <iomanip>
 
 int main()
@@ -20,7 +19,7 @@ int main()
 	cout << "vec = " << vec << endl;
 	Vec3dT<float> s = vec + vec1;
 	cout << "s = " << s << endl << endl;
-	cout << "s == vec:  " << (s.compareTo(vec)) << endl;
+	cout << "s == vec:  " << (s == vec) << endl;
 	cout << "s += vec:  " << (s += vec) << endl;
 	cout << "s -= vec:  " << (s -= vec) << endl;
 	cout << "s *= vec:  " << (s *= vec) << endl;
