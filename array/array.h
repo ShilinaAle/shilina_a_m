@@ -8,32 +8,32 @@ class Array
 {
 public:
 	Array();
-	Array(const int n);
+	Array(const int leng);
 	Array(const Array& rhs);
 	~Array();
-
+	ostream& wrireTo(std::ostream& ostrm) const;
 	int& operator[](const ptrdiff_t i);
 	const int& operator[](const ptrdiff_t i) const;
+	
+	Array& operator = (const Array& rhs);
 
-	ostream& writeTo(std::ostream& ostrm) const;
-	int length();
-	void insert(const int a, const int i);
-	//void remove(const int i);
-	//istream& readFrom(const std::istream& istrm);
+	void insert(const int& a, const int& ind);
+	void remove_i(const int& ind);
+	void remove(const int& a);
+
+	int& fiz();
+	int& length();
+
 private:
-	const ptrdiff_t defSize{ 5 };
-	ptrdiff_t size{ 0 };
-	ptrdiff_t phySize{ 0 };
 	int* pData_{ nullptr };
-	
-	static const char leftBrace{ '{' };
-	static const char rightBrace{ '}' };
-	static const char separator{ ',' };
 
-	
-	
+	const ptrdiff_t defaultSize = 4;
+	ptrdiff_t size{ 0 };
+	ptrdiff_t fsize{ 0 };
+
+	void swap(int*& rhs);
+	void increase(const int& new_size);
 };
-ostream& operator<<(std::ostream& ostrm, const Array& rhs);
 
-
+ostream& operator <<(std::ostream& ostrm, const Array& rhs);
 #endif // !ARRAY_H_20171107
