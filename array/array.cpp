@@ -59,7 +59,7 @@ const int& Array::operator[](const ptrdiff_t i) const
 	return pData_[i];
 }
 
-Array& Array::operator =(const Array& rhs)
+Array& Array::operator = (const Array& rhs)
 {
 	Array a(rhs);
 	swap(a.pData_);

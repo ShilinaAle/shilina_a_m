@@ -1,1 +1,1 @@
-add_executable ( stackL stackL.cpp )
+add_executable ( stackL stackL.cpp stackL_test.cpp stackL.h )
