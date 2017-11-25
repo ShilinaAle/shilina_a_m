@@ -3,21 +3,18 @@
 #include <stdexcept>
 
 StackL::StackL(const StackL& rhs)
+{
+	
+	Node* pCopyFrom(rhs.pHead_->pNext_);
+	Node* pCopyTo = new Node(nullptr, rhs.pHead_->data_);
+	pHead_ = pCopyTo;
+	while (pCopyFrom != nullptr)
 	{
-		StackL rhs_;
-		Node* a;
-		a = rhs.pHead_;
-		while (a != nullptr)
-		{
-			rhs_.push(a->data_);
-			a = a->pNext_;
-		}
-		while (!rhs_.isEmpty())
-		{
-			push(rhs_.top());
-			rhs_.pop();
-		}
+		pCopyTo -> pNext_= new Node(nullptr, pCopyFrom->data_);
+		pCopyTo = pCopyTo->pNext_;
+		pCopyFrom = pCopyFrom->pNext_;
 	}
+}
 StackL::~StackL()
 	{
 		while (!isEmpty())
