@@ -94,19 +94,4 @@ int main()
 	b.remove(99);
 	cout << "b.remove(99): " << b << " fsize = " << b.fiz() << " size = " << b.length() << endl << endl;
 
-	/*a.~Array();
-	cout << a << endl;*/
-	//a.insert(666, 0);
-	//a.insert(66, 2);
-	//cout << a << " size = " << a.length() << endl;
-
-
-	//почему работает ->
-	int* w = new int[2]{ 0 };
-	w[4] = 6;
-	for (int i(0); i < 7 ; i += 1)
-	{
-		cout << w[i+1000] << ' ';
-	}
-	//<- почему работает 
 }
