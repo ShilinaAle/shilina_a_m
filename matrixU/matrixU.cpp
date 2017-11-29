@@ -5,9 +5,9 @@ MatrixU::MatrixU()
 	:nCol(nDefolt), nRow(nDefolt)
 {
 	size = nCol*nRow;
-	pData_ = new int[size] { 0 };
+	pData_ = new ptrdiff_t[size] { 0 };
 };
-MatrixU::MatrixU(const int& nR, const int& nC)
+MatrixU::MatrixU(const ptrdiff_t& nR, const ptrdiff_t& nC)
 	:nRow(nR), nCol(nC)
 {
 	size = nCol*nRow;
@@ -22,6 +22,8 @@ MatrixU::MatrixU(const MatrixU& rhs)
 		pData_[i] = rhs.pData_[i];
 	}
 	size = rhs.size;
+	nCol = rhs.nCol;
+	nRow = rhs.nRow;
 }
 
 MatrixU::~MatrixU()
@@ -32,9 +34,9 @@ MatrixU::~MatrixU()
 
 ostream& MatrixU::writeTo(std::ostream& ostrm) const
 {
-	for (int iR(0); iR < nRow; iR += 1)
+	for (ptrdiff_t iR(0); iR < nRow; iR += 1)
 	{
-		for (int iC(0); iC < nCol; iC += 1)
+		for (ptrdiff_t iC(0); iC < nCol; iC += 1)
 		{
 			ostrm << pData_[nCol*iR + iC] << ' ';
 		}
@@ -44,19 +46,65 @@ ostream& MatrixU::writeTo(std::ostream& ostrm) const
 	return ostrm;
 }
 
-int& MatrixU::at(const int& nR, const int& nC)
+int& MatrixU::at(const ptrdiff_t& nR, const ptrdiff_t& nC)
 {
 	return pData_[nCol*nR + nC];
 }
 
-const int& MatrixU::at(const int& nR, const int& nC) const
+const ptrdiff_t& MatrixU::at(const ptrdiff_t& nR, const ptrdiff_t& nC) const
 {
 	return pData_[nCol*nR + nC];
 }
 
-//int& MatrixU::opr()
+MatrixU& MatrixU::operator += (const MatrixU rhs)
+{
+	for (ptrdiff_t iR(0); iR < nRow; iR += 1)
+	{
+		for (ptrdiff_t iC(0); iC < nCol; iC += 1)
+		{
+			pData_[nCol*iR + iC] += rhs.at(iR, iC);
+		}
+	}
+	return *this;
+
+}
+
+MatrixU& MatrixU::operator -= (const MatrixU rhs)
+{
+	for (ptrdiff_t iR(0); iR < nRow; iR += 1)
+	{
+		for (ptrdiff_t iC(0); iC < nCol; iC += 1)
+		{
+			pData_[nCol*iR + iC] -= rhs.at(iR, iC);
+		}
+	}
+	return *this;
+	
+}
+
+//MatrixU& operator *(const MatrixU lhs, const MatrixU rhs)
 //{
-//
+//	/*if (nCol != rhs.nRow)
+//	{
+//		throw invalid_argument("you stupied");
+//	}*/
+//	MatrixU umn(lhs., rhs.nCol);
+//	umn.nCol = rhs.nCol;
+//	umn.nRow = nRow;
+//	for (ptrdiff_t iR(0); iR < nRow; iR += 1)
+//	{
+//		for (ptrdiff_t iCrh(0); iCrh < rhs.nCol; iCrh += 1)
+//		{
+//			for (ptrdiff_t iC(0); iC < nCol; iC += 1)
+//			{
+//				umn.pData_[umn.nCol * iR + iCrh] += at(iR,iC)*rhs.at(iC, iCrh);
+//			}
+//		}
+//	}
+//	nCol = rhs.nCol;
+//	nRow = nRow;
+//	pData_ = umn.pData_;
+//	return *this;
 //}
 ostream & operator<<(std::ostream & ostrm, const MatrixU & rhs)
 {

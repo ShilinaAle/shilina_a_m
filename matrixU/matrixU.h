@@ -8,25 +8,30 @@ class MatrixU
 {
 public:
 	MatrixU();
-	MatrixU(const int& nR, const int& nC);
+	MatrixU(const ptrdiff_t& nR, const ptrdiff_t& nC);
 	MatrixU(const MatrixU& rhs);
 	~MatrixU();
 
 	ostream& writeTo(std::ostream& ostrm) const;
 	
-	int& at(const int& nR, const int& nC);
-	const int& at(const int& nR, const int& nC) const;
+	int& at(const ptrdiff_t& nR, const ptrdiff_t& nC);
+	const int& at(const ptrdiff_t& nR, const ptrdiff_t& nC) const;
+	
+	MatrixU& operator +=(const MatrixU rhs);
+	MatrixU& operator -=(const MatrixU rhs);
+	
 
-	//int& opr();
+
 private:
 	ptrdiff_t nDefolt{ 3 };
 	ptrdiff_t nCol{ 0 };
 	ptrdiff_t nRow{ 0 };
-	int* pData_{ nullptr };
+	ptrdiff_t* pData_{ nullptr };
 
 	ptrdiff_t size{ 0 };
 };
 
+//MatrixU& operator *(const MatrixU lhs, const MatrixU rhs);
 ostream& operator <<(std::ostream& ostrm, const MatrixU& rhs);
 
 #endif // !MATRIXU_20171128
