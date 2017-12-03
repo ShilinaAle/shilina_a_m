@@ -6,14 +6,18 @@
 using namespace std;
 class PriorityQueueL
 {
-	PriorityQueueL();
+public:
+	PriorityQueueL() = default;
 	~PriorityQueueL();
 	PriorityQueueL(PriorityQueueL& rhs);
 	void pop();
-	void push();
-	void top();
+	void push(const int& a);
+	int& top();
 	bool isEmpty() const;
-public:
+	ostream& writeTo(ostream& ostrm) const;
+	PriorityQueueL& operator = (PriorityQueueL& rhs);
+
+private:
 	struct Node
 	{
 		Node(Node* pNext, const int& a);
@@ -21,10 +25,7 @@ public:
 		int data_{ int(0) };
 	};
 	Node* pHead_{ nullptr };
-	Node* pTail{ nullptr };
-	ostream& writeTo(ostream& ostrm) const;
-	
-private:
+	Node* pTail_{ nullptr };
 	
 };
 ostream& operator << (ostream& ostrm, PriorityQueueL& rhs);
