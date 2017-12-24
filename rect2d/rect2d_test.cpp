@@ -16,6 +16,9 @@ int main()
 	cout << "rec contain a[3,2] = " << rec.contains(4, 2) << endl; 
 	cout << "rec contain a[6,3] = " << rec.contains(6, 3) << endl;
 
-	cout << " &  = " << (rec & Rect2d(4, 0, 2, 2)) << endl;
+	cout << " rec & Rect2d(4, 0, 2, 2)  = " << (rec & Rect2d(4, 0, 2, 2)) << endl;
+	cout << "(Rect2d(4, 0, 2, 2) == Rect2d(4, 0, 2, 2)): "<< (Rect2d(4, 0, 2, 2) == Rect2d(4, 0, 2, 2)) << endl;
+	cout << "(Rect2d(4, 0, 2, 2) != Rect2d(-4, -5, 2, 2)): " << (Rect2d(4, 0, 2, 2) != Rect2d(-4, -5, 2, 2)) << endl;
+
 	return 0;
 }

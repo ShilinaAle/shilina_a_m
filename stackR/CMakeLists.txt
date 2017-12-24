@@ -1,0 +1,1 @@
+add_executable ( stackR stackR.cpp stackR_test.cpp stackR.h )

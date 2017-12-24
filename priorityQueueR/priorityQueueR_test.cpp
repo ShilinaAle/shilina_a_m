@@ -5,18 +5,6 @@ using namespace std;
 int main()
 {
 	PriorityQueueL a;
-
-	try { a.top(); }
-	catch (const invalid_argument& exept)
-	{
-		cout << exept.what() << endl << endl;
-	}
-	try { cout << a; }
-	catch (const invalid_argument& exept)
-	{
-		cout << exept.what() << endl << endl;
-	}
-
 	a.push(1);
 	a.push(2);
 	a.push(3);
@@ -32,6 +20,5 @@ int main()
 	PriorityQueueL c;
 	cout << "PriorityQueueL c = a: " << (c = a) << endl;
 	cout << "PriorityQueueL c = b: " << (c = b) << endl;
-
 
 };

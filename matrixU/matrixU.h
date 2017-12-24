@@ -31,7 +31,6 @@ private:
 	ptrdiff_t size{ 0 };
 };
 
-//MatrixU& operator *(const MatrixU lhs, const MatrixU rhs);
 ostream& operator <<(std::ostream& ostrm, const MatrixU& rhs);
 
 #endif // !MATRIXU_20171128

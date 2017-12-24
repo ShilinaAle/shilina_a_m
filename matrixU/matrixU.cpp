@@ -7,6 +7,7 @@ MatrixU::MatrixU()
 	size = nCol*nRow;
 	pData_ = new ptrdiff_t[size] { 0 };
 };
+
 MatrixU::MatrixU(const ptrdiff_t& nR, const ptrdiff_t& nC)
 	:nRow(nR), nCol(nC)
 {
@@ -81,31 +82,6 @@ MatrixU& MatrixU::operator -= (const MatrixU rhs)
 	return *this;
 	
 }
-
-//MatrixU& operator *(const MatrixU lhs, const MatrixU rhs)
-//{
-//	/*if (nCol != rhs.nRow)
-//	{
-//		throw invalid_argument("you stupied");
-//	}*/
-//	MatrixU umn(lhs., rhs.nCol);
-//	umn.nCol = rhs.nCol;
-//	umn.nRow = nRow;
-//	for (ptrdiff_t iR(0); iR < nRow; iR += 1)
-//	{
-//		for (ptrdiff_t iCrh(0); iCrh < rhs.nCol; iCrh += 1)
-//		{
-//			for (ptrdiff_t iC(0); iC < nCol; iC += 1)
-//			{
-//				umn.pData_[umn.nCol * iR + iCrh] += at(iR,iC)*rhs.at(iC, iCrh);
-//			}
-//		}
-//	}
-//	nCol = rhs.nCol;
-//	nRow = nRow;
-//	pData_ = umn.pData_;
-//	return *this;
-//}
 ostream & operator<<(std::ostream & ostrm, const MatrixU & rhs)
 {
 	return rhs.writeTo(ostrm);

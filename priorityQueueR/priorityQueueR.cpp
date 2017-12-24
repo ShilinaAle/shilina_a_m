@@ -61,11 +61,6 @@ bool PriorityQueueL::isEmpty() const
 
 ostream & PriorityQueueL::writeTo(ostream & ostrm) const
 {
-	if (isEmpty())
-	{
-		throw invalid_argument("The queue is empty");
-	}
-
 	Node * a = pHead_;
 	while (a != nullptr)
 	{

@@ -14,8 +14,8 @@ public:
 	std::ostream& writeTo(std::ostream& ostrm) const;
 
 	Rect2d& operator=(const Rect2d& v); //ссылка - для множественного присваивания
-	//bool operator==(const Vec3d& v) const;
-	//bool operator!=(const Vec3d& v) const { return !operator==(v); }
+	bool operator==(const Rect2d& v) const;
+	bool operator!=(const Rect2d& v) const { return !operator==(v); }
 	
 	double s();
 	double p();

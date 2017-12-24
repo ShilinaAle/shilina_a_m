@@ -17,11 +17,12 @@ Rect2d& Rect2d::operator=(const Rect2d& v)
 	h = v.h;
 	return *this;
 } 
-//bool Vec3d::operator==(const Vec3d & v) const
-//{
-//	double eps = 1e-5;
-//	return ((abs(x - v.x) <= eps) && (abs(y - v.y) <= eps) && (abs(z - v.z) <= eps));
-//}
+bool Rect2d::operator==(const Rect2d & v) const
+{
+	double eps = 1e-5;
+	return ((abs(x - v.x) <= eps) && (abs(y - v.y) <= eps)
+		&& (abs(w - v.w) <= eps) && (abs(h - v.h) <= eps));
+}
 
 std::ostream& Rect2d::writeTo(std::ostream& ostrm) const
 {
