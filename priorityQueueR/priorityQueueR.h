@@ -4,31 +4,27 @@
 #include <iostream>
 
 using namespace std;
-class PriorityQueueL
+class PriorityQueueR
 {
 public:
-	PriorityQueueL() = default;
-	~PriorityQueueL();
-	PriorityQueueL(PriorityQueueL& rhs);
+	PriorityQueueR() = default;
+	~PriorityQueueR();
+	PriorityQueueR(PriorityQueueR& rhs);
 	void pop();
 	void push(const int& a);
 	int& top();
 	bool isEmpty() const;
 	ostream& writeTo(ostream& ostrm) const;
-	PriorityQueueL& operator = (const PriorityQueueL& rhs);
+	PriorityQueueR& operator = (const PriorityQueueR& rhs);
 
 private:
-	struct Node
-	{
-		Node(Node* pNext, const int& a);
-		Node* pNext_{ nullptr };
-		int data_{ int(0) };
-	};
-	Node* pHead_{ nullptr };
-	Node* pTail_{ nullptr };
-	
+	int* pData_ { nullptr };
+	int pHead_ { int(-1) };
+	int pTail_ { int(-1) };
+	int size{ 3 };
+	int fsize{ int(0) };
 };
-ostream& operator << (ostream& ostrm, PriorityQueueL& rhs);
+ostream& operator << (ostream& ostrm, PriorityQueueR& rhs);
 
 #endif // !STACHL_20171116
 

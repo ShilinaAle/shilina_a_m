@@ -1,36 +1,33 @@
 #ifndef STACHL_20171116
 #define STACHL_20171116
 #include <iosfwd>
-#include <iostream>
+#include <stddef.h>
 #include <memory>
 
-using namespace std;
 class StackLis
 {
 public:
 	StackLis() = default;
-	~StackLis() = default;
-	/*StackLis(const StackLis& rhs);
-	void push(const int& a);
+	~StackLis();
+	StackLis(const StackLis& rhs);
+	StackLis& operator=(const StackLis& rhs);
+	void push(const int& value);
 	void pop();
 	int& top();
 	const int& top() const;
-	bool isEmpty() const;*/
-
-	ostream& writeTo(ostream& ostrm) const;
-	//StackLis& operator = (const StackLis& rhs);
-
+	bool isEmpty() const;
+	std::ostream& writePop(std::ostream& ostrm);
 private:
 	struct Node
 	{
-		Node(unique_ptr<Node> pNext, const int& a);
-		unique_ptr<Node> pNext_{ nullptr };
-		int data_{ int(0) };
+		Node(std::unique_ptr<Node> pNext, const int& value);
+		std::unique_ptr<Node> pNext_{ nullptr };
+		int pData_{ int(0) };
 	};
-	//Node* pHead_{ nullptr };
-	unique_ptr<Node> pHead_{ nullptr };
+	std::unique_ptr<Node> pHead_{ nullptr };
 };
-ostream& operator << (ostream& ostrm, StackLis& rhs);
+
+std::ostream& operator<<(std::ostream& ostrm, StackLis& rhs);
 
 #endif // !STACHL_20171116
 

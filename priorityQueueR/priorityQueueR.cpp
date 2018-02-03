@@ -1,78 +1,79 @@
-#include"priorityQueueL.h"
+#include"priorityQueueR.h"
 #include <iostream>
 #include <stdexcept>
 
-PriorityQueueL::~PriorityQueueL()
+PriorityQueueR::~PriorityQueueR()
 {
-	while (!isEmpty())
+	/*while (!isEmpty())
 	{
 		pop();
 	}
-	pTail_ = nullptr;
+	pTail_ = nullptr;*/
 }
-PriorityQueueL::PriorityQueueL(PriorityQueueL& rhs)
+PriorityQueueR::PriorityQueueR(PriorityQueueR& rhs)
 {
-	Node* ind(rhs.pHead_);
+	/*Node* ind(rhs.pHead_);
 	while (ind != nullptr)
 	{
 		push(ind->data_);
 		ind = ind->pNext_;
-	}
+	}*/
 }
 
-void PriorityQueueL::pop()
+void PriorityQueueR::pop()
 {
-	if (!isEmpty()) {
-		Node* pdeleted(pHead_);
-		pHead_ = pdeleted->pNext_;
+	/*if (!isEmpty()) {
+		int* pdeleted(pHead_);
+		pHead_ = pHead_ + 1;
 		delete pdeleted;
-	}
+		size -= 1;
+	}*/
 }
 
-void PriorityQueueL::push(const int& a)
+void PriorityQueueR::push(const int& a)
 {
-	Node* vsp = new Node(nullptr, a);
-
 	if (isEmpty())
 	{
-		pTail_ = vsp;
-		pHead_ = pTail_;
+		int* pDataNew = new int[size];
 	}
-	else
+	if (size == fsize)
 	{
-		pTail_->pNext_ = vsp;
-		pTail_ = pTail_->pNext_;
+		int* pDataNew = new int[size * 2];
 	}
+	size += 1;
+	pTail_ += 1;
+	pData_[pTail_] = a;
+	
 }
 
-int& PriorityQueueL::top()
+int& PriorityQueueR::top()
 {
 	if (isEmpty())
 	{
 		throw invalid_argument("You can not take an object from the empty queue");
 	}
-	return pHead_->data_;
+	//return *pHead_;
 }
 
-bool PriorityQueueL::isEmpty() const
+bool PriorityQueueR::isEmpty() const
 {
 	return (!pHead_);
 }
 
-ostream & PriorityQueueL::writeTo(ostream & ostrm) const
+ostream & PriorityQueueR::writeTo(ostream & ostrm) const
 {
-	Node * a = pHead_;
+	/*Node * a = pHead_;
 	while (a != nullptr)
 	{
 		ostrm << a->data_ << ' ';
 		a = a->pNext_;
 	}
-	return ostrm;
+	return ostrm;*/
 }
 
-PriorityQueueL & PriorityQueueL::operator=(const PriorityQueueL & rhs)
+PriorityQueueR & PriorityQueueR::operator=(const PriorityQueueR & rhs)
 {
-	while (!isEmpty())
+	/*while (!isEmpty())
 	{
 		pop();
 	}
@@ -82,13 +83,10 @@ PriorityQueueL & PriorityQueueL::operator=(const PriorityQueueL & rhs)
 		push(oup->data_);
 		oup = oup->pNext_;
 	}
-	return *this;
+	return *this;*/
 }
 
-PriorityQueueL::Node::Node(Node* pNext, const int& a)
-	:pNext_(pNext), data_(a){}
-
-ostream & operator<<(ostream & ostrm, PriorityQueueL & rhs)
+ostream & operator<<(ostream & ostrm, PriorityQueueR & rhs)
 {
 	return rhs.writeTo(ostrm);
 }
